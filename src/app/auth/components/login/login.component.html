@@ -1,15 +1,15 @@
 <div class="main">
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="login()">
         <h4>Login</h4>
         <p>Entre em sua conta</p>
         <label for="basic-url" class="form-label">E-mail</label>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" id="email" >
+          <input type="text" class="form-control" id="email" formControlName="email" >
         </div>
     
         <label for="basic-url" class="form-label">Senha</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="senha" aria-describedby="basic-addon3">
+            <input type="password" class="form-control" id="password" aria-describedby="basic-addon3" formControlName="password">
         </div>
 
 

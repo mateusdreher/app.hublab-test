@@ -22,10 +22,15 @@ img {
 input {
     border: 2px solid #270080;
     background-color: transparent;
-
+    box-shadow: none !important;
+    outline:0px !important;
+  -webkit-appearance:none;
 }
 input:focus {
     background-color: transparent;
+    box-shadow: none !important;
+    outline:0px !important;
+    -webkit-appearance:none;
 }
 label {
     color: #270080;
