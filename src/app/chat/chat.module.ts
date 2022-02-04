@@ -5,6 +5,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ChatRoutingModule } from './chat-routing.module';
 import { JoinRoomComponent } from './components/join-room/join-room.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ChatRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
   ]
 })
 export class ChatModule { }

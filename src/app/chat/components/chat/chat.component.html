@@ -8,7 +8,7 @@
         <div class="messages">
             <app-message *ngFor="let message of messages" [message]="message"></app-message>
         </div>
-        <input class="form-control"  type="text" id="message">
+        <input class="form-control"  type="text" id="message" name="message" [(ngModel)]="messageInput">
         
 
     </div>

@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.auth({email: this.form.value.email, password: this.form.value.password}).subscribe(
       (data) => {
-        this.authService.setCurrentUserSessionValue(data.token, false);
-        this.router.navigate(['']);
+        this.authService.setCurrentUserSessionValue({token: data.token, user: data.user, expired: false});
+        this.router.navigate(['/chat']);
       },
       (error) => {
         alert('Erro no login');

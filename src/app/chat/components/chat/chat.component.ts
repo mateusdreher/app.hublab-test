@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageDto } from '../../dtos/message.dto';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,6 +9,7 @@ import { MessageDto } from '../../dtos/message.dto';
 })
 export class ChatComponent implements OnInit {
   users: string[] = ['Mateus Dreher', 'Cleiton'];
+  messageInput: string = '';
   messages: MessageDto[] = [
     {
       name: 'Mateus Dreher',
@@ -23,9 +25,23 @@ export class ChatComponent implements OnInit {
     }
   ]; 
   
-  constructor() {}
+  constructor(
+    private chatService: ChatService
+  ) {}
 
   ngOnInit(): void {
+    this.chatService.receivedMessaveSubject.subscribe(
+      (event: MessageDto) => {
+        this.messages.push(event);
+      }
+    );
+  }
+
+  sendNewMessage() {
+    if(!this.messageInput.length) {
+      return;
+    }
+    this.chatService.sendMessage(this.messageInput)
   }
   
 
