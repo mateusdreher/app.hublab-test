@@ -1,17 +1,31 @@
-<div>
-    <h3>Bem vindo ao hubla chat</h3>
-    <p>selecione uma sala para entrar ou crie uma nova sala</p>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-        <select class="form-select" id="inputGroupSelect01">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-      </div>
+<div class="main">
+    <div class="content">
+        <h3>Bem vindo ao hubla chat</h3>
+        <div>
+            <p>Selecione uma sala</p>
+            <div class="input-group mb-3">
+                <select class="form-select" id="inputGroupSelect01">
+                    <option selected disabled>Selecione...</option>
+                    <option *ngFor="let room of rooms">{{room}}</option>
+                </select>
+            </div>
+            <app-button text="Entrar"></app-button>
+        
+        </div>
+        
+        <div class="separator">
+            <h4> Ou </h4>
+        </div>
+    
+        <div>
+            <p>Crie sua própria sala</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Nome da Sala" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <app-button text="Criar"></app-button> 
+        </div>
+    </div>
+   
 </div>
 
 

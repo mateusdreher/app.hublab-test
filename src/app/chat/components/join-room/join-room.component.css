@@ -1,0 +1,26 @@
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h3, p {
+    text-align: center;
+}
+h3 {
+    margin: 10% 0;
+}
+.separator {
+    border-bottom: 4px solid #270080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20% 0;
+}
+
+.separator > h4 {
+    background-color: #E7F3FF;
+    margin-bottom: -18px;
+    width: fit-content;
+    padding: 0 4% ;
+}

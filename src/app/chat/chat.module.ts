@@ -4,6 +4,7 @@ import { MessageComponent } from './components/message/message.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ChatRoutingModule } from './chat-routing.module';
 import { JoinRoomComponent } from './components/join-room/join-room.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +16,8 @@ import { JoinRoomComponent } from './components/join-room/join-room.component';
   ],
   imports: [
     CommonModule,
-    ChatRoutingModule
+    ChatRoutingModule,
+    SharedModule
   ]
 })
 export class ChatModule { }

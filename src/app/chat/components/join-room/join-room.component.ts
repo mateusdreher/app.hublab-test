@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JoinRoomComponent implements OnInit {
   rooms: string[] = ['sala 01', 'sala 02'];
-  constructor() { }
+  
+  constructor(
+    
+  ) { }
 
   ngOnInit(): void {
   }
