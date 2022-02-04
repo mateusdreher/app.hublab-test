@@ -1,0 +1,39 @@
+<!-- @TO-DO: Componentizar formulário -->
+<div class="main">
+    <form [formGroup]="form" (ngSubmit)="register()">
+        <h4>Registrar</h4>
+        <p>Crie sua conta</p>
+        
+        <label for="basic-url" class="form-label">Nome</label>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="name" formControlName="name" >
+        </div>
+
+        <label for="basic-url" class="form-label">E-mail</label>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="email" formControlName="email" >
+        </div>
+        
+        <label for="basic-url" class="form-label">Confirmar E-mail</label>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="confirmEmail" formControlName="confirmEmail" >
+        </div>
+
+        <label for="basic-url" class="form-label">Senha</label>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" id="password" aria-describedby="basic-addon3" formControlName="password">
+        </div>
+
+        <label for="basic-url" class="form-label">Senha</label>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" id="password" aria-describedby="basic-addon3" formControlName="password">
+        </div>
+
+        <app-button text="Criar Conta"></app-button>
+
+        <p>Já possui conta? <a [routerLink]="['/login']"><i>Faça login agora</i></a></p>
+    </form>
+    <div class="img">
+        <img src="../../../../assets/register.svg" >
+    </div>
+</div>
