@@ -1,0 +1,15 @@
+<div class="chat">
+    <div class="sidebar">
+        <h4>Usuários</h4>
+        <p *ngFor="let user of users">{{user}}</p>
+    </div>
+    <div class="main-chat">
+        <h5>#{{messages[0].room}}</h5>
+        <div class="messages">
+            <app-message *ngFor="let message of messages" [message]="message"></app-message>
+        </div>
+        <input class="form-control"  type="text" id="message">
+        
+
+    </div>
+</div>

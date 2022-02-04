@@ -1,0 +1,15 @@
+.head {
+    font-size: 12px;
+    font-style: italic;
+    color: #270080;
+}
+.head > span {
+    margin-right: 1%;
+}
+.msg {
+    font-size: 16px;
+}
+.date {
+    font-size: 10px;
+    color: #72767d;
+}
