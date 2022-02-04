@@ -54,7 +54,6 @@ export class RegisterComponent implements OnInit {
     }
     this.userService.create(dto).subscribe(
       (data) => {
-        sessionStorage.setItem('user', JSON.stringify({name: data.name, email: data.email}));
         this.router.navigate(['/login']);
       },
       (error) => {

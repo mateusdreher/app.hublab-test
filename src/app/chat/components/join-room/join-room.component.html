@@ -1,0 +1,32 @@
+<div class="main">
+    <div class="content">
+        <h3>Bem vindo ao hubla chat</h3>
+        <div>
+            <p>Selecione uma sala</p>
+            <div class="input-group mb-3">
+                <select class="form-select" id="inputGroupSelect01">
+                    <option selected disabled>Selecione...</option>
+                    <option *ngFor="let room of rooms">{{room.name}}</option>
+                </select>
+            </div>
+            <app-button text="Entrar"></app-button>
+        
+        </div>
+        
+        <div class="separator">
+            <h4> Ou </h4>
+        </div>
+    
+        <div>
+            <p>Crie sua própria sala</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Nome da Sala" id="name" name="name" [(ngModel)]="roomName">
+            </div>
+            <app-button text="Criar"></app-button> 
+        </div>
+    </div>
+   
+</div>
+
+
+

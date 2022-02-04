@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthRequestDto } from '../dtos/auth-request.dto';
 import { AuthResponseDto } from '../dtos/auth-response.dto';
+import { HublabSessionDto } from '../dtos/hublab_session.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,9 @@ export class AuthService {
   constructor(private http: HttpClient) { 
     this.currentUSerSessionSubject = new BehaviorSubject<any>(
       {
-        session: JSON.parse(sessionStorage.getItem('session_value') as string), 
-        expired: false}
+        hublab_session: JSON.parse(sessionStorage.getItem('hublab_session') as string), 
+        expired: false
+      }
     );
   }
 
@@ -23,9 +25,9 @@ export class AuthService {
     return this.currentUSerSessionSubject.value;
   }
 
-  public setCurrentUserSessionValue(session: string, expired: boolean) {
-    sessionStorage.setItem('session_value', session);
-    this.currentUSerSessionSubject.next({session, expired});
+  public setCurrentUserSessionValue(dto: HublabSessionDto) {
+    sessionStorage.setItem('token', JSON.stringify(dto));
+    this.currentUSerSessionSubject.next(dto);
   }
   
 
