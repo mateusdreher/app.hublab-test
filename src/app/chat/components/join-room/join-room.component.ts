@@ -10,6 +10,8 @@ import { ChatService } from '../../services/chat.service';
 export class JoinRoomComponent implements OnInit {
   rooms: RoomDto[] = [];
   roomName: string = '';
+  selectedRoom:  string = '';
+
   constructor(
     private chatService: ChatService
   ) { }
@@ -30,6 +32,9 @@ export class JoinRoomComponent implements OnInit {
     )
   }
   
+  joinRoom() {
+    this.chatService.socketio(this.selectedRoom);
+  }
 
   create() {
       if(!this.roomName.length) {

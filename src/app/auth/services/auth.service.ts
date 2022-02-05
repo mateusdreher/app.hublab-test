@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   public setCurrentUserSessionValue(dto: HublabSessionDto) {
-    sessionStorage.setItem('token', JSON.stringify(dto));
+    sessionStorage.setItem('hublab_session', JSON.stringify(dto));
     this.currentUSerSessionSubject.next(dto);
   }
   

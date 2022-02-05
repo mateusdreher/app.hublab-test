@@ -10,7 +10,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { 
-    path: 'chat', 
+    path: 'room/:room', 
+    redirectTo: 'join',
+    pathMatch: 'full'
+  },
+  { 
+    path: 'room/:room/:verify', 
     component: ChatComponent
   },
   { 

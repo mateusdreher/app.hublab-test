@@ -3,13 +3,19 @@
         <h4>Usuários</h4>
         <p *ngFor="let user of users">{{user}}</p>
     </div>
-    <div class="main-chat">
-        <h5>#{{messages[0].room}}</h5>
-        <div class="messages">
-            <app-message *ngFor="let message of messages" [message]="message"></app-message>
+    <div #mainChat class="main-chat">
+        <h5> 
+            #{{room}}
+            <img src="../../../../assets/exit.svg" (click)="exitRoom()"> 
+        </h5>
+           
+        <div class="main-messages">
+            <div class="messages" *ngIf="messages.length">
+                <app-message *ngFor="let message of messages" [message]="message"></app-message>
+            </div>
+            <input class="form-control" placeholder="Pressione enter para enviar sua mensagem"  type="text" id="message" name="message" [(ngModel)]="messageInput" (keyup)="verifyKey($event)">
+            
         </div>
-        <input class="form-control"  type="text" id="message" name="message" [(ngModel)]="messageInput">
-        
 
     </div>
 </div>
