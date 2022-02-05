@@ -1,0 +1,37 @@
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+h4 {
+    text-align: center;
+}
+p {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+form {
+    padding: 0 10% 5% 0;
+    border-right: 2px solid #270080;
+}
+img {
+    width: 600px;
+    height: 400px;
+}
+input {
+    border: 2px solid #270080;
+    background-color: transparent;
+    box-shadow: none !important;
+    outline:0px !important;
+  -webkit-appearance:none;
+}
+input:focus {
+    background-color: transparent;
+    box-shadow: none !important;
+    outline:0px !important;
+    -webkit-appearance:none;
+}
+label {
+    color: #270080;
+}

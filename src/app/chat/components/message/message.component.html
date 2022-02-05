@@ -1,0 +1,11 @@
+<div class="message-balooon">
+    <div class="head">
+        <span><b>{{message.name}}</b></span>
+        <span class="date">{{
+            date_label == '' ? (message.send_at | date:'dd/MM/yy') : (date_label + (message.send_at | date:'HH:mm:ss'))
+        }}</span>
+    </div>
+   
+
+    <p class="msg">{{message.message}}</p>
+</div>

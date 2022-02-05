@@ -1,0 +1,32 @@
+<div class="main">
+    <div class="content">
+        <h3>Bem vindo ao HubLab chat</h3>
+        <div>
+            <p>Selecione uma sala</p>
+            <div class="input-group mb-3">
+                <select class="form-select" id="room-select" name="room-select" [(ngModel)]="selectedRoom">
+                    <option selected disabled>Selecione...</option>
+                    <option *ngFor="let room of rooms" [value]="room.name">{{room.name}}</option>
+                </select>
+            </div>
+            <app-button text="Entrar" (click)="joinRoom()"></app-button>
+        
+        </div>
+        
+        <div class="separator">
+            <h4> Ou </h4>
+        </div>
+    
+        <div>
+            <p>Crie sua própria sala</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Nome da Sala" id="name" name="name" [(ngModel)]="roomName">
+            </div>
+            <app-button text="Criar" (click)="create()"></app-button> 
+        </div>
+    </div>
+   
+</div>
+
+
+
