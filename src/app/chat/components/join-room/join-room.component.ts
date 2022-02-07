@@ -56,7 +56,7 @@ export class JoinRoomComponent implements OnInit {
         },
         (error) => {
           this.toast.show = true;
-          this.toast.text = error.error || 'Error ao criar a sala';
+          this.toast.text = error.error.error || 'Error ao criar a sala';
         }
       )
   }

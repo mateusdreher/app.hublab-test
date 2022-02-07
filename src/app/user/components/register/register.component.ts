@@ -15,7 +15,8 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   validInputs: GenericObjectType = {
     email: true,
-    password: true
+    password: true,
+    name: true
   }
   toast: ToastType = {
     show: false,
@@ -89,7 +90,10 @@ export class RegisterComponent implements OnInit {
       (error) => {
         console.log(error)
         this.toast.show = true;
-        this.toast.text = error.error || 'Erro ao criar o usuário';
+        this.toast.text = error.error.error || 'Erro ao criar o usuário';
+        if (error.error.error == 'Username already exists') {
+          this.validInputs['name'] = false;
+        }
       }
     )
   }

@@ -6,8 +6,9 @@
         
         <label for="basic-url" class="form-label">Nome</label>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" id="name" formControlName="name" >
+          <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="!validInputs['name'] ? 'is-invalid' : ''">
         </div>
+        <small class="span-invalid text-danger" *ngIf="!validInputs['name']">Nome de usuário já existe</small>
 
         <label for="basic-url" class="form-label">E-mail</label>
         <div class="input-group mb-3">
@@ -25,7 +26,7 @@
             [ngClass]="!validInputs['email'] ? 'is-invalid' : ''"
           >
         </div>
-        <span class="span-invalid text-danger" *ngIf="!validInputs['email']">Emails não conferem</span>
+        <small class="span-invalid text-danger" *ngIf="!validInputs['email']">Emails não conferem</small>
 
         <label for="basic-url" class="form-label">Senha</label>
         <div class="input-group mb-3">
@@ -43,7 +44,7 @@
               [ngClass]="!validInputs['password'] ? 'is-invalid' : ''"
             >
         </div>
-        <span class="span-invalid text-danger" *ngIf="!validInputs['password']">Senhas não são iguais</span>
+        <small class="span-invalid text-danger" *ngIf="!validInputs['password']">Senhas não são iguais</small>
 
         <app-button text="Criar Conta"></app-button>
 

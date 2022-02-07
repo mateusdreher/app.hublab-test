@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
        this.toast.show = true;
-       this.toast.text = error.error || 'Erro no login';
+       this.toast.text = error.error.error || 'Erro no login';
         console.error(error);
       }
     );
