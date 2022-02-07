@@ -17,6 +17,7 @@ export class ChatService {
   public previousMessagesSubject: BehaviorSubject<MessageDto[]>;
   public newUserSubject: BehaviorSubject<string>;
   public downUserSubject: BehaviorSubject<string>;
+  public loggedUsersSubject: BehaviorSubject<string[]>;
   private user: string = '';
   private room: string = '';
 
@@ -35,6 +36,7 @@ export class ChatService {
     this.previousMessagesSubject = new BehaviorSubject<MessageDto[]>([]);
     this.newUserSubject = new BehaviorSubject<string>('');
     this.downUserSubject = new BehaviorSubject<string>('');
+    this.loggedUsersSubject = new BehaviorSubject<string[]>([]);
   }
 
   public get previousMessagessValue(): MessageDto[] {
@@ -68,6 +70,11 @@ export class ChatService {
       this.previousMessagesSubject.next(messages);
       localStorage.setItem('room_verify', hash)
       this.router.navigate([`/chat/room/${room}/${hash}`])
+    });
+
+    // Ususarios ativos na sala
+    this.socket.on('loggedUsers', (users) => {
+      this.loggedUsersSubject.next(users);
     });
 
     //Escuta toda nova mensagem

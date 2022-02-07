@@ -49,22 +49,37 @@ export class ChatComponent implements OnInit {
       }
     );
 
+    this.chatService.loggedUsersSubject.subscribe(
+      (event: string[]) => {
+        for (const user of event) {
+          this.addUserToList(user);
+        }
+      }
+    );
+
     this.chatService.newUserSubject.subscribe(
       (event) => {
-        const alreadyUser = this.users.filter(i => i == event);
-        console.log();
-        
-        if(!alreadyUser.length) {
-          this.users.push(event);
-        }
+        this.addUserToList(event);
       }
     );
 
     this.chatService.downUserSubject.subscribe(
       (event) => {
-        this.users = this.users.filter(i => i != event);
+        this.removeUserFromList(event)
       }
     );
+  }
+
+  addUserToList(user: string) {
+    const alreadyUser = this.users.filter(i => i == user);
+        
+    if(!alreadyUser.length) {
+      this.users.push(user);
+    }
+  }
+
+  removeUserFromList(user: string) {
+    this.users = this.users.filter(i => i != user);
   }
 
   sendNewMessage() {
