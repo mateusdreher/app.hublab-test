@@ -78,8 +78,8 @@ export class ChatComponent implements OnInit {
   }
 
   scrollChat() {
-    const div = document.getElementsByClassName('messages')[0] as HTMLElement;
     setTimeout(() => {
+      const div = document.getElementsByClassName('messages')[0] as HTMLElement;
       div.scrollTo(0, div.scrollHeight)
     }, 100); 
   }

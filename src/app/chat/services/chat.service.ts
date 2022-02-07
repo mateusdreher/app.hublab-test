@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RoomDto } from '../dtos/room.dto';
@@ -42,11 +42,19 @@ export class ChatService {
   }
 
   getRooms(): Observable<RoomDto[]> {
-    return this.http.get<RoomDto[]>(`${this.baseUrl}/room/all`);
+    let headers = new HttpHeaders;
+    const token = JSON.parse(sessionStorage.getItem('hublab_session') as string).token;
+    headers = headers.append('auth', token);
+    
+    return this.http.get<RoomDto[]>(`${this.baseUrl}/room/all`, { headers });
   }
 
   create(name: string): Observable<RoomDto> {
-    return this.http.post<RoomDto>(`${this.baseUrl}/room`, {name})
+    let headers = new HttpHeaders;
+    const token = JSON.parse(sessionStorage.getItem('hublab_session') as string).token;
+    headers = headers.append('auth', token);
+
+    return this.http.post<RoomDto>(`${this.baseUrl}/room`, {name}, { headers })
   }
 
   socketio(room: string) {
