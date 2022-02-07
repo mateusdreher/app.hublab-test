@@ -10,6 +10,14 @@ OBS: Aplicação simples feita para consumir a api de chat, portando ainda receb
 ## Iniciando a aplicação
 Para iniciar a aplicação basta rodar o comando `ng s` ou `ng serve` e acessar o endereço [http://localhost:4200](http://localhost:4200)
 
+Já existe um usuário teste criado assim que a api for iniciada : 
+```
+  {
+	  "email": "cleitonbomdeguerra@olimpus.com",
+	  "password": "ihatezeus123"
+  } 
+```
+
 
 
 

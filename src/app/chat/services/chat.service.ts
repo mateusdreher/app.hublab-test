@@ -47,7 +47,7 @@ export class ChatService {
     let headers = new HttpHeaders;
     const token = JSON.parse(sessionStorage.getItem('hublab_session') as string).token;
     headers = headers.append('auth', token);
-    
+
     return this.http.get<RoomDto[]>(`${this.baseUrl}/room/all`, { headers });
   }
 
