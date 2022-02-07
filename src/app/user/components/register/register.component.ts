@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GenericObjectType } from 'src/app/shared/types/generic-object.type';
+import { ToastType } from 'src/app/shared/types/toast.type';
 import { UserCreateDto } from '../../dtos/user-create.dto';
 import { UserService } from '../../services/user.service';
 
@@ -11,6 +13,15 @@ import { UserService } from '../../services/user.service';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
+  validInputs: GenericObjectType = {
+    email: true,
+    password: true
+  }
+  toast: ToastType = {
+    show: false,
+    text: '',
+    class: ''
+  };
   
   constructor(
     private fb: FormBuilder,
@@ -30,23 +41,42 @@ export class RegisterComponent implements OnInit {
   }
 
   validForm(): boolean {
+    console.log(this.form);
     if (!this.form.valid) {
-      alert('Verifique os campos');
+      this.toast.show = true;
+      this.toast.text = 'Verifique os campos';
       return false;
     }
     if (this.form.value.password !== this.form.value.confirmPassword) {
-      alert('Senhas diferentes');
+      this.toast.show = true;
+      this.toast.text = 'Senhas diferentes';
+      this.validInputs['password'] = false;
       return false;
     }
     if (this.form.value.email !== this.form.value.confirmEmail) {
-      alert('Emails diferntes');
+      this.toast.show = true;
+      this.toast.text = 'E-mails diferentes';
+      this.validInputs['email'] = false;
       return false;
     }
 
     return true;
   }
+
+  validInput(input: string, event: any) {
+    
+    if (this.form.value[input] !== event.target.value) {
+      this.validInputs[input] = false;
+    }
+    else {
+      this.validInputs[input] = true;
+    }
+  }
   
   register() {
+    if(!this.validForm()) {
+      return;
+    }
     const dto: UserCreateDto = {
       email: this.form.value.email,
       password: this.form.value.password,
@@ -57,7 +87,9 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       (error) => {
-        alert('Erro ao criar o usuário');
+        console.log(error)
+        this.toast.show = true;
+        this.toast.text = error.error || 'Erro ao criar o usuário';
       }
     )
   }

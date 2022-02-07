@@ -2,7 +2,7 @@
     <div class="head">
         <span><b>{{message.name}}</b></span>
         <span class="date">{{
-            date_label == '' ? (message.send_at | date:'dd/MM/yy') : (date_label + (message.send_at | date:'HH:mm:ss'))
+            date_label == '' ? (message.send_at | date:'dd/MM/yy - HH:mm') : (date_label + (message.send_at | date:'HH:mm:ss'))
         }}</span>
     </div>
    

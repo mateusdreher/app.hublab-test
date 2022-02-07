@@ -22,6 +22,11 @@ export class ChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.roomVerify();
+    this.listenEventsFromService();
+  }
+
+  roomVerify() {
     this.route.params.subscribe(
       (params) => {
         this.room = params['room'];
@@ -34,7 +39,9 @@ export class ChatComponent implements OnInit {
       return;
     }
     localStorage.removeItem('room_verify');
-    
+  }
+
+  listenEventsFromService() {
     this.chatService.receivedMessaveSubject.subscribe(
       (event: MessageDto) => {
         this.messages.push(event);
@@ -49,22 +56,37 @@ export class ChatComponent implements OnInit {
       }
     );
 
+    this.chatService.loggedUsersSubject.subscribe(
+      (event: string[]) => {
+        for (const user of event) {
+          this.addUserToList(user);
+        }
+      }
+    );
+
     this.chatService.newUserSubject.subscribe(
       (event) => {
-        const alreadyUser = this.users.filter(i => i == event);
-        console.log();
-        
-        if(!alreadyUser.length) {
-          this.users.push(event);
-        }
+        this.addUserToList(event);
       }
     );
 
     this.chatService.downUserSubject.subscribe(
       (event) => {
-        this.users = this.users.filter(i => i != event);
+        this.removeUserFromList(event)
       }
     );
+  }
+
+  addUserToList(user: string) {
+    const alreadyUser = this.users.filter(i => i == user);
+        
+    if(!alreadyUser.length) {
+      this.users.push(user);
+    }
+  }
+
+  removeUserFromList(user: string) {
+    this.users = this.users.filter(i => i != user);
   }
 
   sendNewMessage() {
@@ -78,8 +100,8 @@ export class ChatComponent implements OnInit {
   }
 
   scrollChat() {
-    const div = document.getElementsByClassName('messages')[0] as HTMLElement;
     setTimeout(() => {
+      const div = document.getElementsByClassName('messages')[0] as HTMLElement;
       div.scrollTo(0, div.scrollHeight)
     }, 100); 
   }
@@ -90,8 +112,6 @@ export class ChatComponent implements OnInit {
     if(keyCode === 13 ) {
       this.sendNewMessage();
     }
-
-
   }
 
   exitRoom() {

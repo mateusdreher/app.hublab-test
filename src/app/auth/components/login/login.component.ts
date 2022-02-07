@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastType } from 'src/app/shared/types/toast.type';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  toast: ToastType = {
+    show: false,
+    text: '',
+    class: ''
+  };
   form: FormGroup;
 
   constructor(
@@ -29,7 +34,8 @@ export class LoginComponent implements OnInit {
   validForm(): boolean {
     console.log(this.form);
     if (!this.form.valid) {
-      alert('Verifique os campos');
+      this.toast.show = true;
+      this.toast.text = 'Verifique os campos';
       return false;
     }
     return true;
@@ -46,7 +52,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/chat']);
       },
       (error) => {
-        alert('Erro no login');
+       this.toast.show = true;
+       this.toast.text = error.error || 'Erro no login';
         console.error(error);
       }
     );
