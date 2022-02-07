@@ -16,18 +16,34 @@
         
         <label for="basic-url" class="form-label">Confirmar E-mail</label>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" id="confirmEmail" formControlName="confirmEmail" >
+          <input 
+            type="text" 
+            class="form-control" 
+            id="confirmEmail" 
+            formControlName="confirmEmail" 
+            (keyup)="validInput('email', $event)" 
+            [ngClass]="!validInputs['email'] ? 'is-invalid' : ''"
+          >
         </div>
+        <span class="span-invalid text-danger" *ngIf="!validInputs['email']">Emails não conferem</span>
 
         <label for="basic-url" class="form-label">Senha</label>
         <div class="input-group mb-3">
             <input type="password" class="form-control" id="password" aria-describedby="basic-addon3" formControlName="password">
         </div>
 
-        <label for="basic-url" class="form-label">Senha</label>
+        <label for="basic-url" class="form-label">Confirme sua senha</label>
         <div class="input-group mb-3">
-            <input type="password" class="form-control" id="password" aria-describedby="basic-addon3" formControlName="password">
+            <input 
+              type="password" 
+              class="form-control" 
+              id="confirmPassword" 
+              formControlName="confirmPassword" 
+              (keyup)="validInput('password', $event)" 
+              [ngClass]="!validInputs['password'] ? 'is-invalid' : ''"
+            >
         </div>
+        <span class="span-invalid text-danger" *ngIf="!validInputs['password']">Senhas não são iguais</span>
 
         <app-button text="Criar Conta"></app-button>
 

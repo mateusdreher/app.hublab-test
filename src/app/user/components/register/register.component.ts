@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GenericObjectType } from 'src/app/shared/types/generic-object.type';
 import { UserCreateDto } from '../../dtos/user-create.dto';
 import { UserService } from '../../services/user.service';
 
@@ -11,6 +12,10 @@ import { UserService } from '../../services/user.service';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
+  validInputs: GenericObjectType = {
+    email: true,
+    password: true
+  }
   
   constructor(
     private fb: FormBuilder,
@@ -44,6 +49,17 @@ export class RegisterComponent implements OnInit {
     }
 
     return true;
+  }
+
+  validInput(input: string, event: any) {
+    console.log('EVENTO', event.target.value);
+    
+    if (this.form.value[input] !== event.target.value) {
+      this.validInputs[input] = false;
+    }
+    else {
+      this.validInputs[input] = true;
+    }
   }
   
   register() {

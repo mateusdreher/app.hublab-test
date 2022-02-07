@@ -22,6 +22,11 @@ export class ChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.roomVerify();
+    this.listenEventsFromService();
+  }
+
+  roomVerify() {
     this.route.params.subscribe(
       (params) => {
         this.room = params['room'];
@@ -34,7 +39,9 @@ export class ChatComponent implements OnInit {
       return;
     }
     localStorage.removeItem('room_verify');
-    
+  }
+
+  listenEventsFromService() {
     this.chatService.receivedMessaveSubject.subscribe(
       (event: MessageDto) => {
         this.messages.push(event);
@@ -105,8 +112,6 @@ export class ChatComponent implements OnInit {
     if(keyCode === 13 ) {
       this.sendNewMessage();
     }
-
-
   }
 
   exitRoom() {
