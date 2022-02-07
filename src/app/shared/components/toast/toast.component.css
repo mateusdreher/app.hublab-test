@@ -1,0 +1,9 @@
+.toast {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.toast:hover {
+    cursor: pointer;
+    transform: scale(0.98);
+}

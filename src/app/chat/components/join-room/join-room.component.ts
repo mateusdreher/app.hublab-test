@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastType } from 'src/app/shared/types/toast.type';
 import { RoomDto } from '../../dtos/room.dto';
 import { ChatService } from '../../services/chat.service';
 
@@ -11,7 +12,12 @@ export class JoinRoomComponent implements OnInit {
   rooms: RoomDto[] = [];
   roomName: string = '';
   selectedRoom:  string = '';
-
+  toast: ToastType = {
+    show: false,
+    text: '',
+    class: ''
+  };
+  
   constructor(
     private chatService: ChatService
   ) { }
@@ -27,7 +33,8 @@ export class JoinRoomComponent implements OnInit {
         this.rooms = data;
       },
       (error) => {
-        alert('Erro ao retornar as salas');
+        this.toast.show = true;
+        this.toast.text = 'Erro ao buscar salas';
       }
     )
   }
@@ -38,7 +45,8 @@ export class JoinRoomComponent implements OnInit {
 
   create() {
       if(!this.roomName.length) {
-        alert('Nome da sala é obrigatório');
+        this.toast.show = true;
+        this.toast.text = 'O Nome da sala é obrigatório';
         return;
       }
 
@@ -47,7 +55,8 @@ export class JoinRoomComponent implements OnInit {
           this.chatService.socketio(this.roomName);
         },
         (error) => {
-
+          this.toast.show = true;
+          this.toast.text = error.error || 'Error ao criar a sala';
         }
       )
   }
